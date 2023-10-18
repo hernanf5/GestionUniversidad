@@ -97,7 +97,7 @@ public class InscripcionData {
 
     public List<Materia> obtenerMateriasCursadas(int id) {
 
-        List<Materia> materias = new ArrayList<Materia>();
+        List<Materia> materias = new ArrayList<>();
 
         try {
             String sql = "SELECT incripcion.idMateria, nombre, año FROM incripcion,"
@@ -113,6 +113,7 @@ public class InscripcionData {
                 materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAño(rs.getInt("año"));
+                materia.setEstado(rs.getBoolean("estado"));
                 materias.add(materia);
             }
             ps.close();
@@ -120,6 +121,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al obtener Inscripciones." + ex.getMessage());
         }
         return materias;
+        
 
     }
 
