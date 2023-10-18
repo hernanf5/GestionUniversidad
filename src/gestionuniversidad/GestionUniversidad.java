@@ -23,9 +23,9 @@ public class GestionUniversidad {
     for(Alumno alumnos:alu.listarAlumnos()){
         
             System.out.println(alumnos.getDni());
-             System.out.println(alumnos.getApellido());
-              System.out.println(alumnos.getNombre());
-               System.out.println(alumnos.getFechaNacimiento());
+            System.out.println(alumnos.getApellido());
+            System.out.println(alumnos.getNombre());
+            System.out.println(alumnos.getFechaNacimiento());
     }
     
     
