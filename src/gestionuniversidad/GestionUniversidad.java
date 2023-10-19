@@ -7,6 +7,7 @@ import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
 import java.time.LocalDate;
+import java.time.Month;
 
 
 /**
@@ -26,18 +27,19 @@ public class GestionUniversidad {
         MateriaData materia = new MateriaData();
         InscripcionData inscripcion = new InscripcionData();
 
-//        alumno.guardarAlumno(new Alumno(43764888, "Gimenez", "Valentin", LocalDate.of(2001, 9, 19), false));
-        alumno.guardarAlumno(new Alumno ());
-        System.out.println(alumno.buscarAlumno(4));
-        System.out.println(alumno.buscarAlumnoPorDni(43764888));
-        System.out.println(alumno.listarAlumnos());
-        alumno.modificarAlumnos(new Alumno ("Diaz", "Jorge",123456789,LocalDate.of(1999,8, 19),true));
-        alumno.eliminarAlumno(4);
+//        alumno.guardarAlumno(new Alumno ("Funes","Hernan",123489,LocalDate.of(2000, 5, 10),true));
+//        System.out.println(alumno.buscarAlumno(4));
+//        System.out.println(alumno.buscarAlumnoPorDni(43764888));
+//        System.out.println(alumno.listarAlumnos());
 
-        materia.guardarMateria(new Materia("Algebra", 1, true));
+////        alumno.modificarAlumnos(new Alumno (5,"Diaz", "Jorge",123456789,LocalDate.of(1999,8, 19),true));
+
+//        alumno.eliminarAlumno(5);
+
+        materia.guardarMateria(new Materia("Ingles", 1, true));
         System.out.println(materia.buscarMateria(1));
-        materia.modificarMateria(new Materia(12, "Calculo", 1, true));
-        materia.eliminarMateria(12);
+        materia.modificarMateria(new Materia(5, "Algebra", 0, true));
+        materia.eliminarMateria(3);
         System.out.println(materia.listarMaterias());
 
         inscripcion.guardarInscripcion(new Inscripcion(8.6 , new Alumno("Hofman", "Laura",147258,LocalDate.of(1998,8, 19),true), new Materia("Ingles", 2, true)));
