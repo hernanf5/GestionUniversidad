@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2023 a las 23:55:18
+-- Tiempo de generación: 19-10-2023 a las 23:30:04
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -107,8 +107,7 @@ ALTER TABLE `alumno`
 --
 ALTER TABLE `inscripcion`
   ADD PRIMARY KEY (`idInscripto`),
-  ADD KEY `idAlumno` (`idAlumno`),
-  ADD KEY `idMateria` (`idMateria`);
+  ADD UNIQUE KEY `idAlumno` (`idAlumno`,`idMateria`);
 
 --
 -- Indices de la tabla `materia`
