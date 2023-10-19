@@ -120,7 +120,8 @@ public class InscripcionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al obtener Inscripciones." + ex.getMessage());
         }
-        return materias;
+        
+        return materias;
         
 
     }
@@ -149,7 +150,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al Acceder a la tabla Inscripcion " + ex.getMessage());
         }
 
-        return materias;
+        return materias;
 
     }
 
@@ -197,10 +198,10 @@ public class InscripcionData {
                 Inscripcion inscripcion = new Inscripcion();
                 inscripcion.setIdInscripto(rs.getInt("idInscripto"));
 
-                Alumno a = AlumnoData.buscarAlumno(rs.getInt("idAlumno"));
+                Alumno a = inscripcion.getAlumno();
                 inscripcion.setAlumno(a);
 
-                Materia m = MateriaData.buscarMateria(rs.getInt("idMateria"));
+                Materia m = inscripcion.getMateria();
                 inscripcion.setMateria(m);
                 inscripcion.setNota(rs.getDouble("nota"));
 
@@ -226,11 +227,11 @@ public class InscripcionData {
                 insc = new Inscripcion();
                 insc.setIdInscripto(rs.getInt("idInscripto"));
 
-                Alumno a = AlumnoData.buscarAlumno(rs.getInt("idAlumno"));
-                insc.setIdAlumno(a.getIdAlumno());
+                Alumno a = insc.getAlumno();
+                insc.setAlumno(a);
 
-                Materia m = MateriaData.buscarMateria(rs.getInt("idMateria"));
-                insc.setIdMateria(m.getIdMateria());
+                Materia m = insc.getMateria();
+                insc.setMateria (m);
                 insc.setNota(rs.getDouble("nota"));
 
                 cursadas.add(insc);
@@ -242,4 +243,5 @@ public class InscripcionData {
         return cursadas;
     }
 }
+
 
