@@ -43,7 +43,7 @@ public class GestionUniversidad {
         System.out.println(materia.listarMaterias());
 
         inscripcion.guardarInscripcion(new Inscripcion(8.6 , new Alumno("Hofman", "Laura",147258,LocalDate.of(1998,8, 19),true), new Materia("Ingles", 2, true)));
-        //System.out.println(inscripcion.obtenerInscripciones());
+  
         System.out.println(inscripcion.obtenerInscripcionesPorAlumno(2));
         System.out.println(inscripcion.obtenerMateriasCursadas(2));
         System.out.println(inscripcion.obtenerMateriasNOCursadas(2));
