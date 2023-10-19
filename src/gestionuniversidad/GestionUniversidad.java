@@ -36,7 +36,7 @@ public class GestionUniversidad {
 
 //        alumno.eliminarAlumno(5);
 
-        materia.guardarMateria(new Materia("Ingles", 1, true));
+        materia.guardarMateria(new Materia("Ingles", 2, true));
         System.out.println(materia.buscarMateria(1));
         materia.modificarMateria(new Materia(5, "Algebra", 0, true));
         materia.eliminarMateria(3);
