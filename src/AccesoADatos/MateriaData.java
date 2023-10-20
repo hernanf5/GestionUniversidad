@@ -28,7 +28,7 @@ public class MateriaData {
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
-                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setIdMateria(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Materia añadida con exito ");
             }
             ps.close();
