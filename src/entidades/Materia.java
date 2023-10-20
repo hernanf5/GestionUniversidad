@@ -10,10 +10,10 @@ package entidades;
  * @author Marco
  */
 public class Materia {
-    int idMateria;
-    String nombre;
-    int año;
-    boolean estado;
+    private int idMateria;
+    private String nombre;
+    private int año;
+    private boolean estado;
 
     public Materia() {
     }

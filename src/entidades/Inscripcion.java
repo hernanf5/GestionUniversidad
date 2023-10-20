@@ -10,10 +10,10 @@ package entidades;
  * @author Marco
  */
 public class Inscripcion {
-    int idInscripto;
-    double nota;
-    Alumno Alumno;
-    Materia Materia;
+    private int idInscripto;
+    private double nota;
+    private Alumno Alumno;
+    private Materia Materia;
 
     public Inscripcion() {
     }
