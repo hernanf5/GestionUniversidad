@@ -49,7 +49,7 @@ public class InscripcionData {
     public void actualizarNota(int idAlumno, int idMateria, double nota) {
         try {
 
-            String sql = "UPDATE incripcion SET nota = ? WHERE IdAlumno = ? and IdMateria = ?;";
+            String sql = "UPDATE inscripcion SET nota = ? WHERE IdAlumno = ? and IdMateria = ?;";
 
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDouble(1, nota);
@@ -75,7 +75,7 @@ public class InscripcionData {
 
         try {
 
-            String sql = "DELETE FROM incripcion WHERE idAlumno =? and idMateria =?;";
+            String sql = "DELETE FROM inscripcion WHERE idAlumno =? and idMateria =?;";
 
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
@@ -100,9 +100,8 @@ public class InscripcionData {
         List<Materia> materias = new ArrayList<>();
 
         try {
-            String sql = "SELECT incripcion.idMateria, nombre, año FROM incripcion,"
-                    + " materia WHERE incripcion.idMateria = materia.idMateria\n"
-                    + "AND incripcion.idAlumno = ?;";
+            String sql = "SELECT inscripcion.idMateria, nombre, año, estado FROM inscripcion JOIN materia ON (inscripcion.idMateria = materia.idMateria)"
+                    + "WHERE inscripcion.idAlumno = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -130,8 +129,7 @@ public class InscripcionData {
         List<Materia> materias = new ArrayList<Materia>();
 
         try {
-            String sql = "SELECT * FROM materia WHERE estado = 1 AND idMateria not in "
-                    + "(SELECT idMateria FROM incripcion WHERE idAlumno =?);";
+            String sql = "SELECT * FROM materia WHERE estado = 1 AND idMateria not in (SELECT idMateria FROM inscripcion WHERE idAlumno =?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
@@ -142,6 +140,7 @@ public class InscripcionData {
                 materia.setIdMateria(resultSet.getInt("idMateria"));
                 materia.setNombre(resultSet.getString("nombre"));
                 materia.setAño(resultSet.getInt("año"));
+                materia.setEstado(resultSet.getBoolean("estado"));
                 materias.add(materia);
             }
             ps.close();
@@ -159,7 +158,7 @@ public class InscripcionData {
 
         try {
             String sql = "SELECT a.idAlumno, dni, nombre,apellido,fechaNacimiento ,estado "
-                    + "FROM incripcion i,alumno a WHERE i.idAlumno = a.idAlumno AND idMateria = ? AND a.estado = 1;";
+                    + "FROM inscripcion i,alumno a WHERE i.idAlumno = a.idAlumno AND idMateria = ? AND a.estado = 1;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idMateria);
             ResultSet rs = ps.executeQuery();
@@ -188,7 +187,7 @@ public class InscripcionData {
         List<Inscripcion> cursadas = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM incripcion WHERE idAlumno = ?;";
+            String sql = "SELECT * FROM inscripcion WHERE idAlumno = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -197,11 +196,13 @@ public class InscripcionData {
 
                 Inscripcion inscripcion = new Inscripcion();
                 inscripcion.setIdInscripto(rs.getInt("idInscripto"));
-
-                Alumno a = inscripcion.getAlumno();
+                AlumnoData alumno = new AlumnoData();
+                
+                Alumno a = alumno.buscarAlumno(rs.getInt("idAlumno"));
                 inscripcion.setAlumno(a);
-
-                Materia m = inscripcion.getMateria();
+                
+                MateriaData materia = new MateriaData();
+                Materia m = materia.buscarMateria(rs.getInt("idMateria"));
                 inscripcion.setMateria(m);
                 inscripcion.setNota(rs.getDouble("nota"));
 

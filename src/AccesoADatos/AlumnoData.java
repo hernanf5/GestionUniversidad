@@ -102,7 +102,7 @@ public class AlumnoData {
         
         List<Alumno> alumnos = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM alumnos WHERE estado = 1";
+            String sql = "SELECT * FROM alumno WHERE estado = 1";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -126,7 +126,7 @@ public class AlumnoData {
     public void modificarAlumnos(Alumno alumno){
         String sql = "UPDATE alumno SET dni = ?, apellido = ?, nombre = ?, fechaNacimiento = ? WHERE idAlumno = ?";
         PreparedStatement ps = null;
-        try{
+        try{           
             ps = con.prepareStatement(sql);
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());

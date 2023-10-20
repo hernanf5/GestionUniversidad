@@ -32,27 +32,36 @@ public class GestionUniversidad {
 //        System.out.println(alumno.buscarAlumnoPorDni(43764888));
 //        System.out.println(alumno.listarAlumnos());
 
-////        alumno.modificarAlumnos(new Alumno (5,"Diaz", "Jorge",123456789,LocalDate.of(1999,8, 19),true));
+//        Alumno alumnoACargar = new Alumno (5,"Diaz", "Jorge",123456789,LocalDate.of(1999,8, 19),true);
+//        alumno.modificarAlumnos(alumnoACargar);
 
 //        alumno.eliminarAlumno(5);
-
-        materia.guardarMateria(new Materia("Ingles", 2, true));
-        System.out.println(materia.buscarMateria(1));
-        materia.modificarMateria(new Materia(5, "Algebra", 0, true));
-        materia.eliminarMateria(3);
-        System.out.println(materia.listarMaterias());
-
-        inscripcion.guardarInscripcion(new Inscripcion(8.6 , new Alumno("Hofman", "Laura",147258,LocalDate.of(1998,8, 19),true), new Materia("Ingles", 2, true)));
-  
-        System.out.println(inscripcion.obtenerInscripcionesPorAlumno(2));
-        System.out.println(inscripcion.obtenerMateriasCursadas(2));
-        System.out.println(inscripcion.obtenerMateriasNOCursadas(2));
-        inscripcion.actualizarNota(2, 5, 5.5);
-        System.out.println(inscripcion.obtenerAlumnosXMateria(5));
-        inscripcion.borrarInscripcionMateriaAlumno(2, 5);
-
-        System.out.println(alumno.listarAlumnos());
+//        Materia materiaACargar = new Materia("Ingles", 2, true);
+//        System.out.println(materiaACargar);
+//        materia.guardarMateria(materiaACargar);
         
+//        System.out.println(materia.buscarMateria(1));
+//        materia.modificarMateria(new Materia(5, "Algebra", 0, true));
+//        materia.eliminarMateria(3);
+//        System.out.println(materia.listarMaterias());
+//double nota, Alumno Alumno, Materia Materia
+//        inscripcion.guardarInscripcion(new Inscripcion(8.6 , new Alumno(6,"Funes", "Hernan",22222222,LocalDate.of(1995,8, 9),true), new Materia(1, "Matematica", 1, true)));
+//        inscripcion.guardarInscripcion(new Inscripcion(8.6 , new Alumno(6,"Funes", "Hernan",22222222,LocalDate.of(1995,8, 9),true), new Materia(2, "Laboratorio", 2, true)));
+//  
+        //id de alumno
+//        System.out.println(inscripcion.obtenerInscripcionesPorAlumno(6));
+        //id de alumno
+//        System.out.println(inscripcion.obtenerMateriasCursadas(6));
+
+//        System.out.println(inscripcion.obtenerMateriasNOCursadas(6));
+//int idAlumno, int idMateria, double nota
+//        inscripcion.actualizarNota(6, 1, 5.5);
+        //id materia
+//        System.out.println(inscripcion.obtenerAlumnosXMateria(1));
+//        inscripcion.borrarInscripcionMateriaAlumno(6, 1);
+//
+//        System.out.println(alumno.listarAlumnos());
+//        
     }
 
 }
