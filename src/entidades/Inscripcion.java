@@ -62,6 +62,11 @@ public class Inscripcion {
     public void setMateria(Materia Materia) {
         this.Materia = Materia;
     }
+
+    @Override
+    public String toString() {
+        return "Inscripcion{" + "idInscripto=" + idInscripto + ", nota=" + nota + ", Alumno=" + Alumno + ", Materia=" + Materia + '}';
+    }
     
     
     
