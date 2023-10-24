@@ -151,7 +151,7 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton4)
                     .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pack();
