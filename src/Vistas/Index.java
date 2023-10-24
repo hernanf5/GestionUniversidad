@@ -5,9 +5,11 @@
  */
 package Vistas;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import vistas.ActualizacionDeNotas;
 
 /**
  *
@@ -30,8 +32,13 @@ public class Index extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        Panel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        ImageIcon icono = new ImageIcon(getClass().getResource("/img/Fondo.png"));
+        Image miImagen = icono.getImage();
+        jDescritorio = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(miImagen, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMAlumno = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -50,21 +57,15 @@ public class Index extends javax.swing.JFrame {
         setTitle("Gestión ULP");
         setName("principal"); // NOI18N
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Fondo.png"))); // NOI18N
-
-        javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
-        Panel.setLayout(PanelLayout);
-        PanelLayout.setHorizontalGroup(
-            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 999, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        javax.swing.GroupLayout jDescritorioLayout = new javax.swing.GroupLayout(jDescritorio);
+        jDescritorio.setLayout(jDescritorioLayout);
+        jDescritorioLayout.setHorizontalGroup(
+            jDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 987, Short.MAX_VALUE)
         );
-        PanelLayout.setVerticalGroup(
-            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        jDescritorioLayout.setVerticalGroup(
+            jDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 568, Short.MAX_VALUE)
         );
 
         jMenuBar1.setBackground(new java.awt.Color(1, 68, 123));
@@ -76,6 +77,11 @@ public class Index extends javax.swing.JFrame {
         jMAlumno.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMAlumno.setFocusable(false);
         jMAlumno.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jMAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMAlumnoActionPerformed(evt);
+            }
+        });
 
         jMenuItem2.setText("Formulario de Alumno");
         jMAlumno.add(jMenuItem2);
@@ -119,6 +125,11 @@ public class Index extends javax.swing.JFrame {
         jMConsultas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jMenuItem6.setText("Alumnos por materia");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMConsultas.add(jMenuItem6);
 
         jMenuBar1.add(jMConsultas);
@@ -136,11 +147,16 @@ public class Index extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jDescritorio)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDescritorio)
+                .addContainerGap())
         );
 
         pack();
@@ -149,6 +165,26 @@ public class Index extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+         
+        jDescritorio.removeAll();
+        jDescritorio.repaint();
+        ActualizacionDeNotas nuevo = new ActualizacionDeNotas();
+        nuevo.setVisible(true);
+        jDescritorio.add(nuevo);
+        jDescritorio.moveToFront(nuevo);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAlumnoActionPerformed
+      
+        jDescritorio.removeAll();
+        jDescritorio.repaint();
+        GestionDeAlumnos nuevo = new GestionDeAlumnos();
+        nuevo.setVisible(true);
+        jDescritorio.add(nuevo);
+        jDescritorio.moveToFront(nuevo);
+    }//GEN-LAST:event_jMAlumnoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,8 +223,7 @@ public class Index extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Panel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JDesktopPane jDescritorio;
     private javax.swing.JMenu jMAdministracion;
     private javax.swing.JMenu jMAlumno;
     private javax.swing.JMenu jMConsultas;
