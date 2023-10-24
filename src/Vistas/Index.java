@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package vistas;
 
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import vistas.ActualizacionDeNotas;
+
+
 
 /**
  *
@@ -93,6 +94,11 @@ public class Index extends javax.swing.JFrame {
         jMMateria.setText("Materia");
         jMMateria.setFocusable(false);
         jMMateria.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jMMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMMateriaActionPerformed(evt);
+            }
+        });
 
         jMenuItem3.setText("Formulario de materia");
         jMMateria.add(jMenuItem3);
@@ -164,27 +170,42 @@ public class Index extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+        jDescritorio.removeAll();
+        jDescritorio.repaint();
+        Inscripciones in = new Inscripciones();
+        in.setVisible(true);
+        jDescritorio.add(in);
+        jDescritorio.moveToFront(in);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
          
         jDescritorio.removeAll();
         jDescritorio.repaint();
-        ActualizacionDeNotas nuevo = new ActualizacionDeNotas();
-        nuevo.setVisible(true);
-        jDescritorio.add(nuevo);
-        jDescritorio.moveToFront(nuevo);
+        ActualizacionDeNotas an = new ActualizacionDeNotas();
+        an.setVisible(true);
+        jDescritorio.add(an);
+        jDescritorio.moveToFront(an);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAlumnoActionPerformed
       
         jDescritorio.removeAll();
         jDescritorio.repaint();
-        GestionDeAlumnos nuevo = new GestionDeAlumnos();
+        GestionDeAlumnos ga = new GestionDeAlumnos();
+        ga.setVisible(true);
+        jDescritorio.add(ga);
+        jDescritorio.moveToFront(ga);
+    }//GEN-LAST:event_jMAlumnoActionPerformed
+
+    private void jMMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMMateriaActionPerformed
+        jDescritorio.removeAll();
+        jDescritorio.repaint();
+        GestionDeMaterias nuevo = new GestionDeMaterias();
         nuevo.setVisible(true);
         jDescritorio.add(nuevo);
         jDescritorio.moveToFront(nuevo);
-    }//GEN-LAST:event_jMAlumnoActionPerformed
+    }//GEN-LAST:event_jMMateriaActionPerformed
 
     /**
      * @param args the command line arguments
