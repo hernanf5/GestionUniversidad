@@ -42,15 +42,15 @@ public class Index extends javax.swing.JFrame {
         };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMAlumno = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMalumno = new javax.swing.JMenuItem();
         jMMateria = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMAdministracion = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMConsultas = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        jMmateria = new javax.swing.JMenuItem();
+        jMInscripcion = new javax.swing.JMenu();
+        jMinscripcion = new javax.swing.JMenuItem();
+        jMmaniNotas = new javax.swing.JMenuItem();
+        jMalumMateria = new javax.swing.JMenu();
+        jMalumPorMateria = new javax.swing.JMenuItem();
+        jMsalir = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -84,8 +84,13 @@ public class Index extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem2.setText("Formulario de Alumno");
-        jMAlumno.add(jMenuItem2);
+        jMalumno.setText("Formulario de Alumno");
+        jMalumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMalumnoActionPerformed(evt);
+            }
+        });
+        jMAlumno.add(jMalumno);
 
         jMenuBar1.add(jMAlumno);
 
@@ -100,51 +105,61 @@ public class Index extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem3.setText("Formulario de materia");
-        jMMateria.add(jMenuItem3);
+        jMmateria.setText("Formulario de materia");
+        jMmateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMmateriaActionPerformed(evt);
+            }
+        });
+        jMMateria.add(jMmateria);
 
         jMenuBar1.add(jMMateria);
 
-        jMAdministracion.setBackground(new java.awt.Color(1, 68, 123));
-        jMAdministracion.setForeground(new java.awt.Color(255, 255, 255));
-        jMAdministracion.setText("Administración");
-        jMAdministracion.setFocusable(false);
-        jMAdministracion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jMInscripcion.setBackground(new java.awt.Color(1, 68, 123));
+        jMInscripcion.setForeground(new java.awt.Color(255, 255, 255));
+        jMInscripcion.setText("Administración");
+        jMInscripcion.setFocusable(false);
+        jMInscripcion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jMenuItem4.setText("Manejo de inscripciones");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMinscripcion.setText("Manejo de inscripciones");
+        jMinscripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jMinscripcionActionPerformed(evt);
             }
         });
-        jMAdministracion.add(jMenuItem4);
+        jMInscripcion.add(jMinscripcion);
 
-        jMenuItem5.setText("Manipulacion de notas");
-        jMAdministracion.add(jMenuItem5);
-
-        jMenuBar1.add(jMAdministracion);
-
-        jMConsultas.setBackground(new java.awt.Color(1, 68, 123));
-        jMConsultas.setForeground(new java.awt.Color(255, 255, 255));
-        jMConsultas.setText("Consultas");
-        jMConsultas.setFocusable(false);
-        jMConsultas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        jMenuItem6.setText("Alumnos por materia");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        jMmaniNotas.setText("Manipulacion de notas");
+        jMmaniNotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                jMmaniNotasActionPerformed(evt);
             }
         });
-        jMConsultas.add(jMenuItem6);
+        jMInscripcion.add(jMmaniNotas);
 
-        jMenuBar1.add(jMConsultas);
+        jMenuBar1.add(jMInscripcion);
 
-        jMenu1.setBackground(new java.awt.Color(1, 68, 123));
-        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu1.setText("Salir");
-        jMenu1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jMenuBar1.add(jMenu1);
+        jMalumMateria.setBackground(new java.awt.Color(1, 68, 123));
+        jMalumMateria.setForeground(new java.awt.Color(255, 255, 255));
+        jMalumMateria.setText("Consultas");
+        jMalumMateria.setFocusable(false);
+        jMalumMateria.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        jMalumPorMateria.setText("Alumnos por materia");
+        jMalumPorMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMalumPorMateriaActionPerformed(evt);
+            }
+        });
+        jMalumMateria.add(jMalumPorMateria);
+
+        jMenuBar1.add(jMalumMateria);
+
+        jMsalir.setBackground(new java.awt.Color(1, 68, 123));
+        jMsalir.setForeground(new java.awt.Color(255, 255, 255));
+        jMsalir.setText("Salir");
+        jMsalir.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jMenuBar1.add(jMsalir);
 
         setJMenuBar(jMenuBar1);
         jMenuBar1.getAccessibleContext().setAccessibleName("MenuPrincipal");
@@ -168,7 +183,7 @@ public class Index extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jMinscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMinscripcionActionPerformed
         // TODO add your handling code here:
         jDescritorio.removeAll();
         jDescritorio.repaint();
@@ -176,36 +191,51 @@ public class Index extends javax.swing.JFrame {
         in.setVisible(true);
         jDescritorio.add(in);
         jDescritorio.moveToFront(in);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jMinscripcionActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-         
-        jDescritorio.removeAll();
+    private void jMalumPorMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMalumPorMateriaActionPerformed
+    jDescritorio.removeAll();
         jDescritorio.repaint();
-        ActualizacionDeNotas an = new ActualizacionDeNotas();
-        an.setVisible(true);
-        jDescritorio.add(an);
-        jDescritorio.moveToFront(an);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+        AlumnosPorMateria nuevo = new AlumnosPorMateria();
+        nuevo.setVisible(true);
+        jDescritorio.add(nuevo);
+        jDescritorio.moveToFront(nuevo);
+    }//GEN-LAST:event_jMalumPorMateriaActionPerformed
 
     private void jMAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAlumnoActionPerformed
-      
-        jDescritorio.removeAll();
-        jDescritorio.repaint();
-        GestionDeAlumnos ga = new GestionDeAlumnos();
-        ga.setVisible(true);
-        jDescritorio.add(ga);
-        jDescritorio.moveToFront(ga);
+         // TODO add your handling code here:
     }//GEN-LAST:event_jMAlumnoActionPerformed
 
     private void jMMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMMateriaActionPerformed
-        jDescritorio.removeAll();
+       // TODO add your handling code here:
+    }//GEN-LAST:event_jMMateriaActionPerformed
+
+    private void jMmateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMmateriaActionPerformed
+           jDescritorio.removeAll();
         jDescritorio.repaint();
         GestionDeMaterias nuevo = new GestionDeMaterias();
         nuevo.setVisible(true);
         jDescritorio.add(nuevo);
         jDescritorio.moveToFront(nuevo);
-    }//GEN-LAST:event_jMMateriaActionPerformed
+    }//GEN-LAST:event_jMmateriaActionPerformed
+
+    private void jMalumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMalumnoActionPerformed
+   jDescritorio.removeAll();
+        jDescritorio.repaint();
+        GestionDeAlumnos ga = new GestionDeAlumnos();
+        ga.setVisible(true);
+        jDescritorio.add(ga);
+        jDescritorio.moveToFront(ga);
+    }//GEN-LAST:event_jMalumnoActionPerformed
+
+    private void jMmaniNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMmaniNotasActionPerformed
+       jDescritorio.removeAll();
+        jDescritorio.repaint();
+        ActualizacionDeNotas ga = new ActualizacionDeNotas();
+        ga.setVisible(true);
+        jDescritorio.add(ga);
+        jDescritorio.moveToFront(ga);
+    }//GEN-LAST:event_jMmaniNotasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,17 +275,17 @@ public class Index extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDescritorio;
-    private javax.swing.JMenu jMAdministracion;
     private javax.swing.JMenu jMAlumno;
-    private javax.swing.JMenu jMConsultas;
+    private javax.swing.JMenu jMInscripcion;
     private javax.swing.JMenu jMMateria;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMalumMateria;
+    private javax.swing.JMenuItem jMalumPorMateria;
+    private javax.swing.JMenuItem jMalumno;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMinscripcion;
+    private javax.swing.JMenuItem jMmaniNotas;
+    private javax.swing.JMenuItem jMmateria;
+    private javax.swing.JMenu jMsalir;
     // End of variables declaration//GEN-END:variables
 }
