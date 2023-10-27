@@ -40,12 +40,7 @@ public class AlumnosPorMateria extends javax.swing.JInternalFrame {
                 jCmaterias.addItem(mate);
             }
         }
-        
    
-        
-        
-        
-        
     }
 
     /**

@@ -38,13 +38,7 @@ public class ActualizacionDeNotas extends javax.swing.JInternalFrame {
                 jCListadoAlumnos.addItem(alum);
             }
         }
-        
-   
-        
-
-        
-        
-
+ 
     }
 
     /**
