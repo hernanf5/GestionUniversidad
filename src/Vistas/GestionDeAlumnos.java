@@ -4,15 +4,23 @@
  */
 package vistas;
 
+import AccesoADatos.AlumnoData;
+import entidades.Alumno;
+import java.time.Instant;
+import java.time.ZoneId;
+import javax.swing.JOptionPane;
+import java.time.LocalDate;
+import java.util.Date;
+
 /**
  *
  * @author Hernán Funes
  */
 public class GestionDeAlumnos extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form GestionDeAlumnos
-     */
+    private AlumnoData aluData = new AlumnoData();
+    private Alumno AlumnoActual = null;
+
     public GestionDeAlumnos() {
         initComponents();
     }
@@ -42,7 +50,7 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
         jTnombre = new javax.swing.JTextField();
         jRestado = new javax.swing.JRadioButton();
         jBbuscar = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDfechaNac = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setTitle("Alumnos");
@@ -68,10 +76,25 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
         });
 
         jBguardar.setText("Guardar");
+        jBguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBguardarActionPerformed(evt);
+            }
+        });
 
         jBeliminar.setText("Eliminar");
+        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBeliminarActionPerformed(evt);
+            }
+        });
 
         jBnuevo.setText("Nuevo");
+        jBnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBnuevoActionPerformed(evt);
+            }
+        });
 
         jTnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +109,11 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
         });
 
         jBbuscar.setText("Buscar");
+        jBbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBbuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,7 +153,7 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
                                 .addComponent(jBbuscar)))
                         .addGap(74, 74, 74))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jDfechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(197, 197, 197)
@@ -159,7 +187,7 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDfechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBguardar)
@@ -181,9 +209,81 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTnombreActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-       dispose();
+        dispose();
     }//GEN-LAST:event_jBsalirActionPerformed
 
+    private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
+
+        try {
+            Integer dni = Integer.parseInt(jTdocumento.getText());
+            AlumnoActual = aluData.buscarAlumnoPorDni(dni);
+            if (AlumnoActual != null) {
+                jTapellido.setText(AlumnoActual.getApellido());
+                jTnombre.setText(AlumnoActual.getNombre());
+                jRestado.setSelected(AlumnoActual.isEstado());
+                LocalDate lc = AlumnoActual.getFechaNacimiento();
+                java.util.Date date = java.util.Date.from(lc.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                jDfechaNac.setDate(date);
+
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un numero valido");
+        }
+    }//GEN-LAST:event_jBbuscarActionPerformed
+
+    private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
+        limpiarCampos();
+        AlumnoActual = null;
+    }//GEN-LAST:event_jBnuevoActionPerformed
+
+    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
+        try{
+        
+        Integer dni = Integer.parseInt(jTdocumento.getText());
+        String apellido = jTapellido.getText();
+        String nombre = jTnombre.getText();
+        
+        if (nombre.isEmpty() || apellido.isEmpty()){
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacios");
+            return;
+        }
+       java.util.Date afecha = jDfechaNac.getDate();
+       LocalDate fechaNac= afecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+          boolean estado = jRestado.isSelected();
+       if(AlumnoActual==null){
+           AlumnoActual= new Alumno(apellido, nombre, dni, fechaNac, estado);
+           aluData.guardarAlumno(AlumnoActual);
+       }else{
+           AlumnoActual.setDni(dni);
+           AlumnoActual.setApellido(apellido);
+           AlumnoActual.setNombre(nombre);
+           AlumnoActual.setFechaNacimiento(fechaNac);
+           aluData.modificarAlumnos(AlumnoActual);
+       }
+       
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Debe ingresar un DNI valido");
+        }
+     
+        
+    }//GEN-LAST:event_jBguardarActionPerformed
+
+    private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
+       if(AlumnoActual!=null){
+           aluData.eliminarAlumno(AlumnoActual.getIdAlumno());
+           AlumnoActual=null;
+           limpiarCampos();
+       }else {
+           JOptionPane.showMessageDialog(this, "No hay alumno seleccionado");
+       }
+    }//GEN-LAST:event_jBeliminarActionPerformed
+    private void limpiarCampos() {
+        jTdocumento.setText("");
+        jTapellido.setText("");
+        jTnombre.setText("");
+        jRestado.setText("");
+        jDfechaNac.setDate(new Date());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBbuscar;
@@ -191,7 +291,7 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBguardar;
     private javax.swing.JButton jBnuevo;
     private javax.swing.JButton jBsalir;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDfechaNac;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
