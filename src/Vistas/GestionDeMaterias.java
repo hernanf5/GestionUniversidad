@@ -4,6 +4,10 @@
  */
 package vistas;
 
+import AccesoADatos.MateriaData;
+import entidades.Materia;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Hernán Funes
@@ -13,6 +17,9 @@ public class GestionDeMaterias extends javax.swing.JInternalFrame {
     /**
      * Creates new form GestionDeMaterias
      */
+    private MateriaData md = new MateriaData();
+    private Materia materiaActual = new Materia();
+    
     public GestionDeMaterias() {
         initComponents();
     }
@@ -57,10 +64,25 @@ public class GestionDeMaterias extends javax.swing.JInternalFrame {
         jLabel5.setText("Estado:");
 
         jBnuevo.setText("Nuevo");
+        jBnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBnuevoActionPerformed(evt);
+            }
+        });
 
         jBeliminar.setText("Eliminar");
+        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBeliminarActionPerformed(evt);
+            }
+        });
 
         jBguardar.setText("Guardar");
+        jBguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBguardarActionPerformed(evt);
+            }
+        });
 
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +92,11 @@ public class GestionDeMaterias extends javax.swing.JInternalFrame {
         });
 
         jBbuscar.setText("Buscar");
+        jBbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBbuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,6 +181,64 @@ public class GestionDeMaterias extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jBsalirActionPerformed
 
+    private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
+        limpiarCampos();
+        materiaActual = null;
+        
+    }//GEN-LAST:event_jBnuevoActionPerformed
+
+    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
+        try{
+            String materia = jTmateria.getText();
+            Integer anio = Integer.parseInt(jTanio.getText());
+            boolean estado = jRestado.isSelected();
+            if(materia.isEmpty()){
+                JOptionPane.showMessageDialog(this, "No puede haber campos vacios");
+            }
+            if (materiaActual == null){
+                materiaActual = new Materia(materia, anio, estado);
+                md.guardarMateria(materiaActual);
+            }else{
+                materiaActual.setNombre(materia);
+                materiaActual.setAño(anio);
+                materiaActual.setEstado(estado);
+                md.modificarMateria(materiaActual);
+            }
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Debe ingresar un numero en el campo AÑO");
+        }
+    }//GEN-LAST:event_jBguardarActionPerformed
+
+    private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
+        if(materiaActual!= null){
+            Integer codigo = Integer.parseInt(jTcodigo.getText());
+            md.eliminarMateria(codigo);
+            materiaActual = null;
+            limpiarCampos();
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay materia seleccionada");
+        }
+    }//GEN-LAST:event_jBeliminarActionPerformed
+
+    private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
+        try{
+            Integer codigo = Integer.parseInt(jTcodigo.getText());
+            materiaActual = md.buscarMateria(codigo);
+            if(materiaActual != null){
+                jTmateria.setText(materiaActual.getNombre());
+                jTanio.setText(String.valueOf(materiaActual.getAño()));
+                jRestado.setSelected(true);
+            }
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Debe ingresar un numero valido" + ex.getMessage());
+        }
+    }//GEN-LAST:event_jBbuscarActionPerformed
+    private void limpiarCampos(){
+        jTcodigo.setText("");
+        jTmateria.setText("");
+        jTanio.setText("");
+        jRestado.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBbuscar;

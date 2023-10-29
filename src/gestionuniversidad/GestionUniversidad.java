@@ -27,9 +27,9 @@ public class GestionUniversidad {
         MateriaData materia = new MateriaData();
         InscripcionData inscripcion = new InscripcionData();
 
-//        alumno.guardarAlumno(new Alumno ("Funes","Hernan",123489,LocalDate.of(2000, 5, 10),true));
-//        System.out.println(alumno.buscarAlumno(4));
-//        System.out.println(alumno.buscarAlumnoPorDni(43764888));
+//       alumno.guardarAlumno(new Alumno ("Nombre","falso",12345678,LocalDate.of(2000, 5, 10),true));
+//        System.out.println(alumno.buscarAlumno(6));
+//        System.out.println(alumno.buscarAlumnoPorDni(22222222));
 //        System.out.println(alumno.listarAlumnos());
 
 //        Alumno alumnoACargar = new Alumno (5,"Diaz", "Jorge",123456789,LocalDate.of(1999,8, 19),true);
