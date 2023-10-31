@@ -18,7 +18,7 @@ public class GestionDeMaterias extends javax.swing.JInternalFrame {
      * Creates new form GestionDeMaterias
      */
     private MateriaData md = new MateriaData();
-    private Materia materiaActual = new Materia();
+    private Materia materiaActual = null;
     
     public GestionDeMaterias() {
         initComponents();
