@@ -10,6 +10,7 @@ import entidades.Alumno;
 import entidades.Inscripcion;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -178,7 +179,11 @@ public class ActualizacionDeNotas extends javax.swing.JInternalFrame {
             int idAlumno = ((Alumno) jCListadoAlumnos.getSelectedItem()).getIdAlumno();
             int idMateria = Integer.parseInt(jTlistaNotas.getValueAt(i, 0).toString());
             double nota = Double.parseDouble(jTlistaNotas.getValueAt(i, 2).toString());
+            if(nota> 10 || nota<1){
+                JOptionPane.showMessageDialog(null, "Ingrese una nota válida.");
+            }else{
             insDat.actualizarNota(idAlumno, idMateria, nota);
+            }
         }
         
         
